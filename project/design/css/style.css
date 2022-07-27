@@ -1,0 +1,999 @@
+/*start public*/
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+
+body {
+  background: var(--bodyColor);
+  font-family: 'Tajawal', sans-serif;
+}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  padding:0;
+}
+a {
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.msg-box {
+  margin: auto;
+  width: 300px;
+  margin-top: 20px;
+}
+.error-msg {
+  padding: 10px;
+  border-left: 3px solid red;
+  background-color: silver;
+  color: #fff;
+  font-weight: bold;
+}
+.success-msg {
+  padding: 10px;
+  border-left: 3px solid green;
+  background-color: silver;
+  color: #fff;
+  font-weight: bold;
+}
+.normal-msg {
+  padding: 10px;
+  border-left: 3px solid darkblue;
+  background-color: silver;
+  color: #fff;
+  font-weight: bold;
+}
+/*end public*/
+
+/*start login*/
+.login-sec {
+  width:100%;
+  height: 100vh;
+  direction: rtl;
+}
+.login-sec .login-box {
+  height: 80vh;
+}
+.login-sec .login-box .right {
+  width: 60%;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #fff;
+  text-transform: capitalize;
+  background-image: url("../images/pl.jpg");
+  background-size: cover;
+  background-position:center;
+  position: relative;
+}
+.login-sec .login-box .right .background {
+  position:absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to right, var(--primaryColor), var(--fourthColor));
+  opacity: .6;
+  z-index: 0;
+}
+.login-sec .login-box .right .content {
+  position: relative;
+  z-index: 1;
+}
+.login-box .right .content h2 {
+  color:#fff
+}
+.login-sec .login-box .right.hidden-par {
+  display: none;
+}
+.login-sec .login-box .right .content .logo img {
+  width:200px;
+  height: 200px;
+}
+.login-sec .login-box .left {
+  width: 50%;
+  float: left;
+  background: #fff;
+  text-transform: capitalize;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.login-sec .login-box .left h2 {
+  color: var(--primaryColor);
+}
+.login-sec .login-box .left form {
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+  padding: 10px;
+}
+.login-sec .login-box .left form input {
+  color: var(--primaryColor);
+}
+.login-sec .login-box .left form input[type="submit"] {
+  background: var(--primaryColor);
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+}
+.login-sec .login-box .left p {
+  color: var(--textColor);
+  text-align: center;
+  margin-top: 5px;
+  margin: 3% 0 0 0;
+}
+
+.login-sec .login-box .left .error-text {
+  color: #f1485b;
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+  float: left;
+}
+.login-sec .login-box .left .signup-form {
+  display: none;
+}
+.login-sec .login-box .left .sign-up-title {
+  display: none;
+}
+.login-sec .login-box .modify {
+  border-radius: 5px;
+  border-left: 3px solid #ff7979;
+  background-color: #ddd;
+}
+.login-sec .login-box .suc-modi {
+  background: #ddd;
+  border-radius: 5px;
+  border-left: 3px solid #00c802;
+}
+/*end login*/
+
+/*start navbar*/
+.navbar {
+  float:left;
+  position: fixed;
+  top: 50%; 
+  left: 40px;
+  transform: translate(-50%, -50%);
+  background:var(--primaryColor);
+  width:80px;
+  height:550px;
+  border-radius: 0;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.navbar ul {
+  display: flex;
+  flex-direction: column;
+  padding:0;
+  width:100%;
+  height:100%;
+}
+.navbar span {
+  margin:0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.navbar ul li {
+  list-style: none;
+  font-size: x-large;
+}
+.navbar ul li a {
+  text-decoration: none;
+}
+.navbar ul li a i{
+  color:#fff
+}
+
+.navbar .profile {
+  height:20%;
+}
+.navbar .profile img {
+  width:45px;
+  height: 45px;
+  border-radius: 50px;
+  object-fit: cover;
+}
+.navbar .main-options {
+  height:80%;
+}
+.navbar .main-options li {
+  margin:20px 0 20px;
+  position: relative;
+}
+
+.navbar .main-options .animated-sapn {
+  position: absolute;
+  top: 148px;
+  left: 23px;
+  background: #fff;
+  width: 33px;
+  height: 33px;
+  border-radius: 6px;
+  display: none;
+}
+.navbar .off {
+  height:20%;
+}
+
+@media(max-width:767px) { /*xs-s*/
+
+  .navbar {
+    position: fixed;
+    top: unset; 
+    left: 0;
+    right:0;
+    bottom:0;
+    transform:none;
+    background:var(--mainColor);
+    margin:0 auto;
+    width:60%;
+    height:60px;
+    height:none;
+    border-radius: 0;
+    border-top-right-radius:15px;
+    border-top-left-radius:15px;
+    border-bottom-right-radius:0;
+    display: flex;
+    z-index: 9999;
+  }
+  .navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:0;
+    width:100%;
+    height:none;
+  }
+  .navbar span {
+    margin:0;
+    display: flex;
+    flex-direction: row;
+    justify-content: none;
+    align-items: none;
+    width:33%;
+    height:100%
+  }
+  .navbar span.profile {
+    flex-basis: 25%;
+    justify-content:flex-start;
+  }
+  .navbar .profile img {
+    margin: 0 0 0 10px;
+  }
+  .navbar span.main-options {
+    flex-basis: 50%;
+    justify-content:space-between;
+  }
+  .navbar span.off {
+    flex-basis: 25%;
+    justify-content:flex-end;
+  }
+  .navbar span.off li {
+    margin:0 10px 0 0;
+  }
+  .navbar .main-options .animated-sapn {
+    position: absolute;
+    top: 148px;
+    left: 23px;
+    background: #fff;
+    width: 33px;
+    height: 33px;
+    border-radius: 6px;
+    display: none;
+  }
+}
+/*end navbar*/
+
+/*start homepage*/
+
+/*start latest news*/
+.news {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width:100%;
+  margin-top:2rem;
+  margin-bottom:2rem
+}
+.news h2 {
+  margin-bottom:1rem;
+  text-align: right;
+  font-weight:bold;
+  width:100%;
+  color:var(--primaryColor)
+}
+.news .news-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.news .news-container .new {
+  width:100%;
+  background:#fff;
+  margin:10px 0 0 0;
+  display: flex;
+  height:250px;
+  border-radius: 20px;
+  padding:10px;
+  cursor: pointer;
+}
+.news .news-container .new .img-container {
+  width:30%;
+}
+.news .news-container .new .img-container img {
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+.news .news-container .new .text-container {
+  width:70%;
+  direction: rtl;
+}
+.news .news-container .new .text-container .headline {
+  margin: 0 2px 0 0;
+}
+.news .news-container .new .text-container .description {
+  margin: 10px 2px 0 0;
+  color:var(--textColor);
+}
+.news .news-container .new:nth-of-type(2),
+.news .news-container .new:nth-of-type(3) {
+  width:49%;
+  height:150px
+}
+.news .news-container .new:nth-of-type(3) {
+  margin-left:1rem;
+}
+
+/*end latest news*/
+.league-standing .table-container{
+  background:#fff;
+  margin-bottom:var(--default_margin);
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-left:0;
+  margin-right:0;
+  border-radius: 20px;
+}
+.league-standing .league-standing-title {
+  font-weight:bold;
+  text-transform: uppercase;
+  width: 100%;
+  text-decoration: none;
+  color:var(--primaryColor);
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+/* bootstrap overrite with the wrong way, the good way didn't work*/
+tbody, td, tfoot, th, thead, tr {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 0 0 1vh 0;
+}
+.league-standing thead tr th {
+  color:var(--fourthColor)
+}
+.league-standing .team-row .badge-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.league-standing .team-row .badge-box .team-badge {
+  width:32px;
+  height:32px;
+}
+/*start recent posts*/
+.recent-posts {
+  margin-top:var(--default_margin);
+  margin-bottom: var(--default_margin);
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+}
+
+.recent-posts h3 {
+  margin:0;
+  width:100%;
+  text-align: right;
+  font-weight: bold;
+  color:var(--primaryColor);
+  margin-bottom: 1rem;
+}
+.recent-posts .post-box {
+  width:100%;
+  min-height:100px;
+  background:#fff;
+  border-radius: 20px;
+  margin:15px 0 15px 0;
+  padding:15px;
+  display: flex;
+  flex-wrap:wrap;
+  cursor: pointer;
+}
+.recent-posts .post-box .img-container {
+  width:30%;
+  height:100%;
+}
+.post-box .img-container img {
+  border-radius: 20px;
+  width:100%;
+  height:300px;
+  object-fit: cover;
+  cursor: pointer;
+}
+/* posts style of home page, profile page and posts page*/
+.post-box .text-container,
+.profile-posts .text-container {
+  width: 70%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.post-box .text-container .profile-info {
+  width:100%;
+  height:20%;
+}
+.post-box .text-container .profile-info .avatar {
+  width:10%;
+  height: 100%;
+  float: right;
+}
+.text-container .profile-info .avatar .avatar-btn {
+  background-color:transparent;
+  border:none
+}
+.profile-info .avatar img {
+  float:right;
+  border-radius: 50%;
+  width:45px;
+  height:45px;
+  object-fit: cover;
+}
+.profile-info .username {
+  float:right;
+  width:90%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-info .username h4:first-of-type {
+  font-weight: bold;
+  margin-right:10px
+}
+.profile-info .username .post-date,
+.profile-info .username .post-time 
+{
+  margin:5px 10px 0 5px;
+  color:var(--textColor);
+}
+.text-container .post-description {
+  width:100%;
+  margin: 5px 10px 0 0;
+  padding:0 0 0 10px;
+  align-self: flex-start;
+  flex-grow: 2;
+}
+.text-container .post-description p {
+  line-height: 1.6;
+  font-size:16px;
+  text-align: right;
+  margin:3% 0 0 0;
+  color:var(--textColor)
+}
+.text-container .likes {
+  width:100%;
+  margin: 25px 0 0 0;
+  display:flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+}
+.text-container .likes .like {
+  border-radius:50%;
+  background:none;
+  border:2px solid var(--fourthColor);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 35px;
+  width:35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-container .likes .like i {
+  color:#d1d1d1;
+}
+.text-container .likes .likers {
+  border-radius:50%;
+  background:none;
+  border:2px solid;
+  border-color:var(--fifthColor);
+  margin:0 5px 0 0;
+  height: 35px;
+  width:35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text-container .likes .likers svg {
+  color:var(--fifthColor)
+}
+.text-container .likes .comments {
+  border-radius:50%;
+  background:none;
+  border:2px solid;
+  border-color:var(--secondaryColor);
+  margin:0 5px 0 0;
+  height: 35px;
+  width:35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.text-container .likes .comments svg {
+  color:var(--secondaryColor)
+}
+/* posts style of home page, profile page and posts page*/
+
+/*end recent posts*/
+
+/*start add*/
+.add-btn-box {
+  position: fixed;
+  right:0;
+  bottom:0;
+  margin:20px;
+  background:var(--primaryColor);
+  border-color:var(--primaryColor);
+}
+.add-btn-box button.add-btn {
+  background:var(--primaryColor);
+  border-color:var(--primaryColor);
+  color:#fff
+}
+.add-btn-box button.add-btn:hover {
+  background:#7e16c4;
+  border-color:#7e16c4;
+  color:#fff  
+}
+section.add .btn-send {
+  background:var(--primaryColor);
+  border-color: var(--primaryColor);
+  color:#fff;
+}
+/*end add*/
+
+/*end homepage*/
+
+/*start profile+*/
+.profile-section {
+  min-height: 100%;
+  min-width: 100%;
+  direction: rtl;
+}
+.profile-section .header {
+  height:200px;
+  width: 100%;
+}
+.profile-section .header .header-img {
+  height:100%;
+  width:100%;
+  object-fit: cover;
+}
+.profile-section .right-side {
+  padding:0;
+  background:#fff;
+}
+.profile-section .right-side .avatar {
+  height:150px;
+  width:100%;
+  position:relative;
+  top:-50px;
+  left:0;
+  display: flex;
+  justify-content: center;
+} 
+.profile-section .right-side .avatar img {
+  border-radius: 50%;
+  width:150px;
+  height:150px;
+  object-fit: cover;
+  margin:0 auto
+}
+.profile-section .right-side .profile-btn {
+  display: flex;
+  justify-content: center;
+  margin:0 0 20px 0
+}
+.profile-section .right-side .profile-btn .follow {
+  padding:5px;
+  background-color:var(--primaryColor);
+  border:none;
+  color:#fff;
+  font-weight:bold;
+  border-radius: 3px;
+}
+.profile-section .right-side .info {
+  margin:0
+}
+.profile-section .right-side .main-name{
+  font-weight: bold;
+  margin-right: 10px;
+  color:var(--primaryColor)
+}
+.profile-section .right-side .main-username{
+  margin-top: 4px;
+  margin-right: 10px;
+  color:var(--primaryColor)
+}
+.profile-section .right-side .bio {
+  margin:15px 0 0 0;
+}
+.profile-section .right-side .detailes {
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right:10px;
+}
+.profile-section .right-side .detailes span {
+  margin:10px 0 0 0;
+  color:var(--textColor)
+}
+.right-side .detailes span i {
+  margin:0 0 0 10px;
+  color:var(--thirdColor)
+}
+.profile-section .right-side .follow-btn .follow {
+  text-align: center;
+  padding:10px;
+  background:var(--primaryColor);
+  border:none;
+}
+.profile-section .right-side .numbers {
+  justify-content: space-around;
+  text-align: center;
+  margin-top:40px
+} 
+.profile-section .right-side .numbers h3 {
+  font-weight: bold;
+  color:var(--primaryColor)
+}
+.profile-section .right-side .numbers h4 {
+  color:var(--fourthColor)
+}
+.profile-section .right-side .media {
+  margin-top:40px;
+  overflow: hidden;
+}
+.profile-section .right-side .media h3 {
+  font-weight: bold;
+  width:100%;
+  color:var(--primaryColor);
+}
+.profile-section .right-side .media .media-box {
+  margin:10px 0;
+  display: flex;
+  justify-content: center;
+}
+.profile-section .right-side .media img {
+  width:100px;
+  height: 100px;
+  object-fit: cover;
+}
+.profile-section .right-side .suggest {
+  margin-top:40px;
+  margin-bottom: 40px;
+}
+.profile-section .right-side .suggest h3 {
+  color:var(--primaryColor);
+  margin-bottom: 1.75rem;
+}
+.profile-section .right-side .suggest  a {
+  text-decoration: none;
+  color:black
+}
+.profile-section .right-side .suggest .user-container {
+  height:135px;
+  width:100%;
+}
+.profile-section .right-side .suggest .user-container h5 {
+  color:var(--secondaryColor)
+}
+.profile-section .right-side .suggest .user-container h6 {
+  color:var(--fourthColor)
+}
+.profile-section .right-side .suggest .user-container img {
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.profile-section .right-side .suggest h3 {font-weight: bold;}
+.profile-section .right-side .suggest button {
+  background:var(--mainColor)
+}
+.nav-tabs {
+  border:none;
+  padding:0
+}
+.nav-tabs .nav-item .nav-link {
+  margin: 0 15px 0 0;
+  color:black;
+}
+.nav-tabs .nav-item .nav-link.active {
+  color:var(--mainColor);
+  font-weight: bold;
+}
+.tab-content .profile-posts {
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+  background:#fff;
+  overflow:hidden;
+  margin-right:16px;
+  padding:8px;
+  border-bottom: 1px dotted darkgray;
+  cursor: pointer;
+}
+.profile-posts .text-container {height: 100%;}
+.profile-posts .text-container .profile-info {
+  width:100%;
+  height:40px;
+}
+.profile-posts .text-container .profile-info .avatar {
+  width:10%;
+  height: 100%;
+  float: right;
+  display: flex;
+  justify-content: center;
+}
+.profile-posts .text-container .profile-info .avatar .avatar-btn {
+  background-color:transparent;
+  border:none
+}
+.profile-posts .text-container .profile-info .avatar img {
+  float:right;
+  border-radius: 50%;
+  width:45px;
+  height:45px;
+  object-fit: cover;
+}
+.profile-posts .text-container .profile-info .username {
+  float:right;
+  width:90%;
+  display: flex;
+  justify-content: flex-start;
+}
+.profile-posts .text-container .profile-info .username h4:first-of-type {
+  font-weight: bold;
+  margin-right:10px;
+  margin-left:10px
+}
+.profile-posts .text-container .post-description {
+  width:100%;
+  flex-grow: 2;
+}
+.profile-posts .text-container .post-description p {
+  line-height: 1.6;
+  font-size:16px;
+  text-align: right;
+  padding:5px;
+  margin-top:10px
+}
+.profile-posts .likes {
+  flex-direction:row;
+ }
+.profile-posts .img-container {
+  width:30%;
+  height:250px
+}
+.profile-posts .img-container img {
+  height:100%;
+  width:100%;
+  object-fit: cover;
+}
+.profile-posts .tab-content .tab-pane {
+  background: #fff;
+  margin:0 16px 0 0;
+}
+/*end profile+*/
+
+/*start add-comments*/
+
+section.add-comment {
+  display: flex;
+  flex-wrap: wrap;
+}
+section.add-comment form textarea {
+  resize: none;
+}
+section.add-comment form .comment-send {
+  border:1px solid var(--fourthColor);
+  color:var(--fourthColor);
+
+}
+section.add-comment form .comment-send:hover {
+  background:var(--fourthColor);
+  color:#fff
+}
+
+/*end add-comments*/
+
+/*start show-comment*/
+.show-comment {
+  margin-top:var(--default_margin);
+  margin-bottom: var(--default_margin);
+  display: flex;
+  flex-wrap: wrap;
+  width:100%;
+}
+.show-comment .comment-box {
+  width:100%;
+  min-height:150px;
+  background:#fff;
+  border-radius: 20px;
+  margin:15px 0 15px 0;
+  padding:15px;
+  display: flex;
+  flex-wrap:wrap;
+}
+.comment-box .text-container {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.comment-box .text-container .profile-info {
+  width:100%;
+  height:50pxs;
+}
+.comment-box .text-container .profile-info .avatar {
+  width:10%;
+  height: 100%;
+  float: right;
+}
+.comment-box .profile-info .avatar .avatar-btn {
+  background-color:transparent;
+  border:none
+}
+.comment-box .avatar img {
+  float:right;
+  border-radius: 50%;
+  width:45px;
+  height:45px;
+  object-fit: cover;
+}
+.comment-box .username {
+  float:right;
+  width:90%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-box .username h4:first-of-type {
+  font-weight: bold;
+  margin-right:10px
+}
+.comment-box .username .comment-date,
+.comment-box .username .comment-time 
+{
+  margin:5px 10px 0 5px;
+  color:gray
+}
+.comment-box .text-container .comment-description {
+  width:100%;
+  margin: 25px 10px 0 0;
+  padding:0 0 0 10px;
+  color:var(--textColor);
+}
+.comment-box .text-container .comment-description p {
+  line-height: 1.6;
+  font-size:16px;
+  text-align: right;
+  margin:10px 0 0 0;
+}
+/*end show-comment*/
+
+/*start news page*/
+.news .card {
+  cursor:pointer;
+  border-radius: 20px;
+  padding:0
+}
+.news .news-card {
+  border-radius: 20px;
+}
+.news .card-header {
+  background-image:linear-gradient(to right, var(--primaryColor),var(--secondaryColor));
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.news .image-box img {
+	width: 100%;
+	height: 600px;
+	object-fit: cover;
+}
+.news .card-body {
+  background:#f5f6fa;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px; 
+}
+/*end news*/
+
+/*start statistics*/
+
+/*end statistics*/
+.stats .stat {
+  min-height: 400px;
+  background:#fff;
+  box-shadow: 0px 2px 20px 7px #cfcfcf;  
+  border-radius: 20px;
+  cursor: pointer;
+  
+}
+.stats .stat-name {
+  color:var(--primaryColor)
+}
+.stats .stat:hover {
+  transform: translate(5px,5px);
+  transition: all .5s ease-in-out;
+}
+.stats .stat .img-box {
+  background-image: url("../images/epl.webp");
+  background-position: center;
+  background-size: cover;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.stats .stat .img-box img {
+  object-fit: cover;
+}
+.stats .stat .img-box .team-badge img {
+  height: 50px;
+  width:50px;
+}
+.stats .stat-container {
+  width: 25%;
+}
+.stats .stat .player h2 {
+  color:#7209B7
+}
+.stats .stat .count h1 {
+  background:-webkit-linear-gradient(#f1485b, #7209B7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 90px;
+}
+.stats .league-standing-title {
+  color:var(--primaryColor)
+}
+/*frame work*/
+.col {
+  padding:0
+}
+:root {
+  --bodyColor: #f8fafb;
+  --primaryColor: #3a0ca3;
+  --secondaryColor: #7209B7;
+  --thirdColor: #4361ee;
+  --fourthColor: #f72585;
+  --fifthColor:#4cc9f0;
+  --textColor: gray;
+  --margin_top: 30px;
+  --margin_bottom: 30px;
+  --margin_left: 30px;
+  --margin_right: 30px;
+  --default_margin:75px;
+  --justify_center: center;
+}
+/*frame work*
+

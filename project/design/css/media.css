@@ -1,0 +1,13 @@
+/*homepage*/
+@media(max-width: 1139px) { /*md-sm-xs with container*/
+
+    .news .news-container .new:nth-of-type(2),
+    .news .news-container .new:nth-of-type(3) {
+      width:100%;
+    }
+    .news .news-container .new:nth-of-type(3) {
+        margin-left: 0;
+    }
+
+}
+/*homepage*/

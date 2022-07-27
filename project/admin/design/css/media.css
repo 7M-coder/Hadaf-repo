@@ -1,0 +1,92 @@
+@media(max-width:720px) {
+
+	/*phone size*/
+
+	/*the main form*/
+	form {
+
+		width:250px;
+		max-width:250px;
+		min-width:250px;
+	}
+
+	/*select box*/
+	.selectboxit-container .selectboxit {
+		max-width:250px;
+		min-width:250px;
+		border-radius:5px;
+		margin-bottom:10px
+	}
+
+	/*h3 of forms*/
+	form h3 {
+		font-size:20px;
+		text-align:center;
+	}
+
+	/*users*/
+	.main-user .box {
+		width:auto;
+	}
+	.main-user .box .avatar-box .avatar {
+		width:30px;
+		height:30px;
+	}
+	/*categories*/
+
+
+	/*posts*/
+	.posts .box {
+		width:100%;
+	}
+	/*comments*/
+	.main-comment .com-box {
+		max-width:240px;
+		width:40px;
+		height:40px
+	}
+	.spam {
+		position:relative;
+		left:150px;
+		top:-80px;
+		padding:5px;
+		background-color:#e41e17;
+		display:none;
+	}
+
+	.spam-comments .panel {
+		max-width:240px;
+	}
+	.panel-body .com-box .img-filed img {
+		width:30px;
+		height:30px
+	}
+
+	.panel-body .com-box .freedom {
+		position:relative;
+		left:140px;
+		top:-80px;
+		padding:5px;
+		background-color:#e41e17;
+		display:none;
+	}
+
+	.circle {
+		background-color:#e41e17;
+		margin:auto;
+		margin-top:20px;
+		margin-bottom:10px;
+		font-size:15px;
+		border-radius:50px;
+		width:50px;
+		height:50px;
+		padding:12px;
+		transition:all .5s ease-in-out;
+		cursor:pointer;
+	}
+}
+
+@media (min-width:721px) and (max-width:1000px) {
+
+
+}
