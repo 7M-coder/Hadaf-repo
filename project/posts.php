@@ -17,7 +17,6 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
 
 		<?php if(!$posts) { // getting post error
 
-			$news;
 			header("refresh:3;url=index.php");
 			exit;
 		} ?>

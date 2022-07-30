@@ -176,7 +176,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<div class="right">
 				<div class="background"></div>
 				<div class="content d-flex flex-column">
-					<h2 class="fw-bold text-center mt-3">مرحبا بكم في موقع الهداف</h2>
+					<h2 class="fw-bold text-center mt-3">مرحبا بكم في موقع هدف</h2>
 					<p class="text-center mt-3">آخر مستجدات وتحديثات الدوري الانجليزي</p>
 					<div class="logo d-flex justify-content-center">
 						<img src="admin/design/logo/The Lion.svg" alt="">

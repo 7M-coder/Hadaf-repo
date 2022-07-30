@@ -16,7 +16,7 @@ if($get_avatar->rowCount() > 0) {
         </span>
         
         <span class="main-options">
-          <li class="home-list" title="الهداف - الصفحة الرئيسية"><a href="homepage.php" class="active"><i class="fas fa-home"></i></a></li>
+          <li class="home-list" title="هدف - الصفحة الرئيسية"><a href="homepage.php" class="active"><i class="fas fa-home"></i></a></li>
           <li class="post-list" title="المنشورات"><a href="posts.php"><i class="fa-regular fa-hashtag"></i></a></li>
           <li class="news-list" title="الأخبار"><a href="news.php"><i class="far fa-newspaper"></i></a></li>
           <li class="stat-list" title="الإحصائيات"><a href="stats.php"><i class="far fa-chart-bar"></i></a></li>

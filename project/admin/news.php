@@ -51,7 +51,10 @@ if($pagename == 'main') {
 				</div>
 
 				<?php endforeach; ?>
-
+			<?php else: 
+				echo "<div class='msg normal-msg'>لا توجد أخبار لعرضها</div>";
+				exit; 
+			?>
 			<?php endif ?>
 			
 			</div>

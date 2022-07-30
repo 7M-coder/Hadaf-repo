@@ -22,31 +22,35 @@ if(isset($_SESSION["user_id_session"])) {
         $stats = $get_stats->fetchAll(); 
         ?>
 
-        <div class="container d-flex flex-wrap stats">
+        <div class="container d-flex flex-wrap justify-content-center stats">
             <?php 
                 if($get_stats) {
 
 
                     if(!$stats) {
 
-                        echo "<div class='alert alert-info w-100 mt-3'>لم تتم إضافة احصائية بعد!</div>";
+                        echo "<div class='msg normal-msg w-100 mt-3'>لم تتم إضافة احصائية بعد!</div>";
                     }
 
                     foreach($stats as $stat): ?>
         
-                    <div class="card stat-card mx-2 mb-3" style="width: 18rem;">
+                    <div class="card stat-card d-flex flex-column mx-2 mb-3 w-25">
                         <img src="uploads/stats/<?php echo $stat["image"]; ?>" class="card-img-top player-img mt-3" alt="...">
-                        <div class="card-body">
+                        <div class="card-body d-flex flex-column h-100">
                             <h1 class="stat-name text-center mb-3"><?php echo $stat["stat_name"]?></h1>
                             <h3 class="player-name text-center mb-3"><?php echo $stat["player"] ?></h3>
                             <h5 class="text-center mb-3">
                                 عدد المساهمات:
                                 <?php echo $stat["count"] ?>
                             </h5>
+                            <div class="delete-btn-container d-flex" style='flex-grow:2'>
                             <a href="?name=delete&id=<?php echo $stat["stat_id"]; ?>" class="btn btn-danger mt-3 w-100 fw-bold delete-stat-btn">
                             حذف
                             </a>
+                            </div>
+
                             <input type="hidden" name="id" value="<?php echo $stat["stat_id"]; ?>">
+
                         </div>
                     </div> 
                 
@@ -220,10 +224,6 @@ if(isset($_SESSION["user_id_session"])) {
                 $team_badge_name = rand(1,100000) . "_" . $team_badge_name;
                 $move1 = move_uploaded_file($player_img_tmp, "uploads/stats/" . $player_img_name);
                 $move2 = move_uploaded_file($team_badge_tmp, "uploads/stats/" . $team_badge_name);
-                if($move) {
-
-
-                }
 
                 $insert = $con->prepare(
                     "

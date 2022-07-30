@@ -89,10 +89,6 @@ function connect($selected, $table, $where = null, $and = null, $ordring = null,
 			return $galb;
 		} 
 	}
-	else {
-
-		return "an error occurred";
-	}
 
 
 }

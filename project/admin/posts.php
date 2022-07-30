@@ -21,180 +21,64 @@ if(isset($_SESSION['user_id_session'])) {
 
 		<section class="posts">
 		<div class="container">
-		<?php 
-		// if you get here to see post of specific category
-		if(isset($_GET['catid']) && is_numeric($_GET['catid'])) {
 
-			$cat_id = intval($_GET['catid']);
-
-			//after long time no see: in short we got all infos of one post by its category id of the post - and we got the creator infos of the post by linking user id column between the tow tables [users and posts] [see phpmyadmin to understand more]
-			$connect = $con->prepare("
-				
-				SELECT posts.*,
-				users.username,
-				users.avatar,
-				users.name
-				FROM posts
-				INNER JOIN 
-				users
-				ON
-				users.user_id = posts.user_id
-				WHERE category_id = ?
-
-				");
-
-			$connect->execute(array($cat_id));
-
-			$record = $connect->fetchAll();
-
-			?>
-			
-			<h2 class="text-center">
-				<?php  
-
-				$catname = connect("category_name", "categories", "WHERE category_id = {$cat_id}", "", "", "get");
-
-				echo $catname['category_name'];
-				?>	
-			</h2>
+			<!--start all posts-->
+			<h2 class="">كافة المنشورات</h2>
 			<div class="row">
 				<?php 
+				$allPosts = $con->prepare("
 
-				$count = $connect->rowCount();
+					SELECT * FROM posts
+					JOIN users
+					ON users.user_id = posts.user_id
+					WHERE posts.category_id = 1
+					");
+
+				$allPosts->execute();
+
+				$record = $allPosts->fetchAll();
+
+				$count = $allPosts->rowCount();
+
 
 				if($count > 0) {
 
-					foreach($record as $result) { ?>
-					<!--start posts related with category id-->
-					<div class="col-xs-12">
-						<div class="box">
+				foreach($record as $result) { ?>
 
-							<div class="right-side">
-								<div class="profile-info">
-									<img src='uploads/avatars/<?php echo $result["avatar"]; ?>' alt='avatar' class='avatar'>
-									<span class="name"><?php echo $result['name']; ?></span>
-									<span class="username">@<?php echo $result['username']; ?></span>
-									<a href="users.php?name=ban&userid=<?php echo $result['user_id']; ?>" title="حظر المستخدم"><i class="fas fa-ban"></i></a>
-								</div>
-								<div class="desc">
-									<p><?php echo $result['description']; ?></p>
-								</div>
-							</div>
-
-							<div class="left-side">
-								<div class="image">
-									<?php 
-
-									if(!empty($result['image'])) {
-
-										echo "<img src='uploads/posts/" . $result['image'] . "' alt='image' class='img-responsive'>";
-									}
-
-									?>
-								</div>
-							</div>
-							
-						</div>
-						<!--start comments related with category id-->
-						<?php 
-
-						$comments = $con->prepare("
-							SELECT comment.*,
-							users.username,
-							users.user_id
-							FROM comment
-							INNER JOIN users
-							ON users.user_id = comment.user_id
-							WHERE post_id = ?
-						");
-						//get the comments of every post by post id not category id cuz we want the comment of the specific post not the whole category
-						$comments->execute(array($result['post_id']));
-
-						$record = $comments->fetchAll();
-
-						$count = $comments->rowCount();
-
-						if($count > 0) {
-
-							foreach($record as $comment) { ?>
-								<div class="comments">
-									<div class="comment-box">
-										<h4>@<?php echo $comment['username'];  ?></h4>
-										<p><?php echo $comment['comment']; ?></p>
-									</div>
-								</div>
-
-							<?php } 
-						} else {
-							return false;
-						}?>
-					<!--end comments related with category id-->
-					<!--end posts related with category id-->
-					</div>
-
-					<?php }
-
-
-				} else {
-
-					echo "لا توجد منشورات لعرضها";
-				}
- 
-				?>
-
-			</div>
-
-		<?php } elseif(isset($_GET['userid']) && is_numeric($_GET['userid'])) {
-
-			//posts of admin
-			$userid = intval($_GET['userid']);
-
-			//check if the user posts exsist
-			$check = checkIf("*", "posts", "user_id", $userid);
-
-			if($check > 0) {
-
-			$my_posts = connect("*", "posts", "WHERE user_id = {$userid}", "", "ORDER BY user_id DESC", "all");
-
-			foreach($my_posts as $posts) { 
-				//show every post
-				$user_info = connect("*", "users", "WHERE user_id = {$userid}", "", "", "all");
-
-				foreach ($user_info as $user) {//show every user ?>
-					<!--start posts of admin-->
-					<div class="col-xs-12">
-
-						<div class="box">
-
+				<div class="col-xs-12">
+					<div class="box">
 						<div class="right-side">
 							<div class="profile-info">
-								<img src='uploads/avatars/<?php echo $user["avatar"]; ?>' alt='avatar' class='avatar'>
-								<span class="name"><?php echo $user['name']; ?></span>
-								<span class="username">@<?php echo $user['username']; ?></span>
-								<a href="users.php?name=ban&userid=<?php echo $result['user_id']; ?>" title="حظر المستخدم"><i class="fas fa-ban"></i></a>
+							<img src='uploads/avatars/<?php echo $result["avatar"]; ?>' alt='avatar' class='avatar'>
+							<span class="name"><?php echo $result['name']; ?></span>
+							<span class="username">@<?php echo $result['username']; ?></span>
+							<a href="users.php?name=ban&userid=<?php echo $result['user_id']; ?>" title="حظر المستخدم"><i class="fas fa-ban"></i></a>
 							</div>
 							<div class="desc">
-								<p><?php echo $posts['description']; ?></p>
-							</div>
+								<p><?php echo $result['description']; ?></p>
+							</div>	
 						</div>
-
+						
 						<div class="left-side">
 							<div class="image">
 								<?php 
 
-								if(!empty($posts['image'])) {
+								if(!empty($result['image'])) {
 
-									echo "<img src='uploads/posts/" . $posts['image'] . "' alt='image' class='img-responsive'>";
+									echo "<img src='uploads/posts/" . $result['image'] . "' alt='image' class=''>";
 								}
 
 								?>
 							</div>
 						</div>
-					
-						</div>
+						
+
+					</div>
+					<div class="comments">
 						<?php 
 
 						$comments = $con->prepare("
+
 							SELECT comment.*,
 							users.username
 							FROM comment
@@ -203,141 +87,40 @@ if(isset($_SESSION['user_id_session'])) {
 							WHERE post_id = ?
 						");
 
-						$comments->execute(array($posts['post_id']));
+						$comments->execute(array($result['post_id']));
 
 						$record = $comments->fetchAll();
 
 						foreach($record as $comment) { ?>
-						<!--start comments of admin post-->
-						<div class="comments">
+
 							<div class="comment-box">
 								<h4>@<?php echo $comment['username'];  ?></h4>
 								<p><?php echo $comment['comment']; ?></p>
 							</div>
-						</div>
-						<!--end comments of admin post-->
-						<?php } ?>
+
+						<?php }
+
+						?>
 					</div>
-					<!--end posts of admin-->
-
-				<?php }
-			 }
-
-			} else {
-
-				header("Location: index.php");
-				exit();
-			}
-
-		} else { ?>
-
-				<!--start all posts-->
-				<h2 class="">كافة المنشورات</h2>
-				<div class="row">
-					<?php 
-					$allPosts = $con->prepare("
-
-						SELECT posts.*,
-						users.username,
-						users.name,
-						users.avatar,
-						categories.category_name
-						FROM posts
-						INNER JOIN 
-						users
-						ON
-						users.user_id = posts.user_id
-						INNER JOIN 
-						categories
-						ON
-						categories.category_id = posts.category_id
-						
-						");
-
-					$allPosts->execute();
-
-					$record = $allPosts->fetchAll();
-
-					$count = $allPosts->rowCount();
-
-
-					if($count > 0) {
-
-					foreach($record as $result) { ?>
-
-					<div class="col-xs-12">
-						<div class="box">
-							<div class="right-side">
-								<div class="profile-info">
-								<img src='uploads/avatars/<?php echo $result["avatar"]; ?>' alt='avatar' class='avatar'>
-								<span class="name"><?php echo $result['name']; ?></span>
-								<span class="username">@<?php echo $result['username']; ?></span>
-								<a href="users.php?name=ban&userid=<?php echo $result['user_id']; ?>" title="حظر المستخدم"><i class="fas fa-ban"></i></a>
-								</div>
-								<div class="desc">
-									<p><?php echo $result['description']; ?></p>
-								</div>	
-							</div>
-							
-							<div class="left-side">
-								<div class="image">
-									<?php 
-
-									if(!empty($result['image'])) {
-
-										echo "<img src='uploads/posts/" . $result['image'] . "' alt='image' class=''>";
-									}
-
-									?>
-								</div>
-							</div>
-							
-
-						</div>
-						<div class="comments">
-							<?php 
-
-							$comments = $con->prepare("
-
-								SELECT comment.*,
-								users.username
-								FROM comment
-								INNER JOIN users
-								ON users.user_id = comment.user_id
-								WHERE post_id = ?
-							");
-
-							$comments->execute(array($result['post_id']));
-
-							$record = $comments->fetchAll();
-
-							foreach($record as $comment) { ?>
-
-								<div class="comment-box">
-									<h4>@<?php echo $comment['username'];  ?></h4>
-									<p><?php echo $comment['comment']; ?></p>
-								</div>
-
-							<?php }
-
-							?>
-						</div>
-					</div>
-					<!--end all posts-->
-					<?php }
-
-					} else {
-
-						echo "<div class='msg-box normal-msg'>لا يوجد منشور لعرضه</div>";
-					}
-
-					?>	
 				</div>
+				<!--end all posts-->
+				<?php }
 
-				<a href="?name=add"><button class="normal-btn">إضافة منشور</button></a>
-		<?php }
+				} else {
 
-		?> 
+					echo "<div class='msg-box normal-msg w-100'>لا يوجد منشور لعرضه</div>";
+				}
+
+				?>	
+			</div>
+			
+			<div class="d-flex justify-content-center w-100">
+				<a href="?name=add" class="add-post btn mt-3">
+					إضافة منشور
+				</a>
+			</div>
+
+
 		
 		</div>
 	</section>
@@ -358,7 +141,7 @@ if(isset($_SESSION['user_id_session'])) {
 
 				<input type="file" name="imageHtml" class="form-control">
 
-				<select name="categoryId">
+				<select class="form-select mb-2" name="categoryId">
 					<?php 
 					$categories = connect("*", "categories", "", "", "ORDER BY category_id LIMIT 2", "all");
 

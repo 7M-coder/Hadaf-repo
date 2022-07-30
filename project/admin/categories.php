@@ -21,13 +21,17 @@ if(isset($_SESSION['user_id_session'])) {
 
 		echo "<div class='container'>";
 
-		$allcats = connect("*", "categories", "", "", "ORDER BY category_id DESC", "all");  ?>
+		$allcats = connect("*", "categories", "", "", "ORDER BY category_id DESC", "all");  
+		$stats = count(connect("stat_name", "stats",null,null,null,"all"));
+
+		?>
+
 
 		<section class="main-cat">
 			<h2 class="">الأقسام</h2>
 
-			<div class="row">
-			<?php foreach($allcats as $cat) { 
+			<div class="row d-flex">
+			<?php foreach($allcats as $index => $cat) { 
 				//extract every row in category table
 				$catid = $cat['category_id'];
 			?>
@@ -45,9 +49,11 @@ if(isset($_SESSION['user_id_session'])) {
 						</div>
 
 						<div class="state-box">
+							<?php if($index !== 0): ?>
 							<i class="glyphicon glyphicon-picture"><p>المنشورات:<?php echo getStats('post_id', 'posts', 'category_id', $catid); ?></p></i>
-							<i class="glyphicon glyphicon-comment"><p>التعليقات:<?php echo getStats('comment_id', 'comment', 'category_id', $catid); ?></p></i>
-							<i class="glyphicon glyphicon-heart"><p>الإعجابات:</p></i>
+							<?php else: ?>
+							<i class="glyphicon glyphicon-picture"><p>المنشورات:<?php echo $stats; ?></p></i>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
@@ -58,8 +64,8 @@ if(isset($_SESSION['user_id_session'])) {
 
 		<?php 
 
-		echo "<a class='main-link text-decoration-none' href='?name=add'><button class='cat-btn normal-btn'>إضافة قسم جديد</button></a>";
-
+		echo "<div class='d-flex justify-content-center w-100'>";
+		echo "<a class='cat-btn btn mt-3 text-decoration-none' href='?name=add'>إضافة قسم جديد</a>";
 		echo "</div>";
 
 	}

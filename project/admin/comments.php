@@ -161,13 +161,19 @@ if(isset($_SESSION['user_id_session'])) {
 
 
 		<?php } else { 
+
+			echo "<div class='container'>";
+			
+			echo "<div class='msg normal-msg mb-3'>لا توجد تعليقات غير محظورة لعرضها</div>";
+
+			echo "</div>";
+
 			// في حالة في كومنتات محظورة فقط اعرضها	
 		?>
 		<section class="spam-comments">
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12">
-					<h2 class="ch2">التعليقات</h2>
 					<div class="panel panel-default">
 						<div class="panel panel-heading">
 							التعليقات المحظورة

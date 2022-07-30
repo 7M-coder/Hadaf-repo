@@ -26,6 +26,8 @@ if(isset($_SESSION['user_id_session'])) {
 
 			$users = connect('*', 'users', 'WHERE admin != 1', '', 'ORDER BY user_id DESC', 'all');
 
+
+			if($users > 0):
 			foreach($users as $user) { ?>
 
 					<div class="box">
@@ -79,10 +81,20 @@ if(isset($_SESSION['user_id_session'])) {
 				
 			<?php }
 
-			?>
-				<a href="?name=add" class="main-link w-100 d-flex justify-content-center">
-					<button class="normal-btn users-btn">اضافة مستخدم جديد</button>
-				</a>
+			else:
+			
+				echo "<div class='msg normal-msg w-100'>لا يوجد مستخدمين لعرضهم</div>";
+
+
+			endif;
+
+			?>	
+				<div class="w-100">
+					<a href="?name=add" class="btn users-btn mt-3 d-flex justify-content-center">
+						اضافة مستخدم جديد
+					</a>
+				</div>
+
 			</div>
 
 		</section>
@@ -100,7 +112,7 @@ if(isset($_SESSION['user_id_session'])) {
 				<input type="password" name="passHtml" class="form-control" placeholder="password"  autocomplete="new-password" required>
 				<input type="email" name="emailHtml" class="form-control" placeholder="email" required>
 				<input pattern=".{0,15}" title="the name cannot be larger than 15 letters" type="text" class="form-control" name="nameHtml"  placeholder="name" required />
-				<select name="adminHtml">
+				<select class="form-select mb-2" name="adminHtml">
 					<option value="not-admin">ادمن؟</option>
 					<option value="1">نعم</option>
 					<option value="0">لا</option>
@@ -276,7 +288,7 @@ if(isset($_SESSION['user_id_session'])) {
 
 				<input type="text" class="form-control" name="nameHtml"  placeholder="name" value="<?php echo $edit['name']; ?>"  />
 
-				<select name="adminHtml">
+				<select name="adminHtml form-select">
 					<option value="not-admin">ادمن؟</option>
 					<option value="1" <?php if($edit['admin'] == 1) {echo 'selected';} ?> >yes</option>
 					<option value="0" <?php if($edit['admin'] == 0) {echo 'selected';} ?>>no</option>

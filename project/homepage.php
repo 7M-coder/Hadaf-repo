@@ -13,7 +13,7 @@ if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
 
 <section class="news">
         <h2>آخر الأخبار</h2>
-        <div class="news-container">
+        <div class="news-container w-100">
         <?php 
         
         $connect = $con->prepare("SELECT * FROM posts WHERE category_id = 2 ORDER BY post_id LIMIT 3");
@@ -45,7 +45,7 @@ if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
 
         } else {
 
-            echo "<div class='msg-box error-msg'>لا توجد أخبار لعرضها</div>";
+            echo "<div dir='rtl' class='msg-box error-msg'>لا توجد أخبار لعرضها</div>";
         }
         ?>
 
@@ -137,7 +137,7 @@ if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
 
     } else {
 
-        echo "<div class='msg-box error-msg'>لا توجد منشورات لعرضها</div>";
+        echo "<div dir='rtl' class='msg-box error-msg'>لا توجد منشورات لعرضها</div>";
     }
 
         ?>

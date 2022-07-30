@@ -167,7 +167,7 @@ textarea.form-control {
 .main-cat .box {
 	margin:0 auto;
 	margin-top:10px;
-	min-height:140px;
+	min-height:100%;
 	border-radius:5px;
 	background:var(--secondaryColor);
 }
@@ -219,7 +219,13 @@ textarea.form-control {
 }
 .cat-btn {
 	background:var(--secondaryColor);
-	border:1px solid var(--secondaryColor);
+
+	margin: auto;
+	color:#fff
+}
+.cat-btn:hover {
+	background:var(--secondaryColor);
+	color:#fff
 }
 /*end categoris*/
 
@@ -311,7 +317,13 @@ textarea.form-control {
 .users-btn {
 	background: var(--secondaryColor);
 	border-color: var(--secondaryColor);
-	float:right;
+	color:#fff;
+	margin: auto;
+}
+.users-btn:hover {
+	background: var(--secondaryColor);
+	border-color: var(--secondaryColor);
+	color:#fff
 }
 /*end users*/
 
@@ -399,7 +411,12 @@ textarea.form-control {
     border-radius:3px;
     cursor: pointer;
 }
-
+.posts .add-post {
+	background-color: var(--secondaryColor);
+	border-color: var(--secondaryColor);
+	color:#fff;
+	margin: auto;
+}
 .posts  form {
 	width:100%;
 }
@@ -707,7 +724,7 @@ textarea.form-control {
 
 /*start stats*/
 .stats .card .stat-name {
-	color: #2f577a;
+	color: var(--primaryColor);
 	font-weight: bold;
 }
 .stats .card .player-img {
@@ -716,15 +733,19 @@ textarea.form-control {
 	margin: auto;
 	border-radius: 100%;
 	border:2px solid;
-	border-color: #d23b4c;
+	border-color: var(--fourthColor);
 }
 .stats .card .player-name {
 	color:gray;
 	font-weight: light;
 }
+.stats .delete-stat-btn {
+	align-self: flex-end;
+	/* align-self: flex-start; */
+}
 .stats .add-stat-btn {
-	background:#2f577a;
-	border-color:#2f577a
+	background:var(--secondaryColor);
+	border-color:var(--secondaryColor)
 }
 /*end stats*/
 
