@@ -112,7 +112,6 @@ function get_specific_data($type, $table, $condition, $value, $condition2 = null
     }
 
     $query = "SELECT " . $type . " FROM " . $table . $join . " " . $condition . $condition2;
-
     $get_data = $con->prepare($query);
     if($condition2 !== null && $value2 !== null) {
         $get_data->execute([$value, $value2]);
@@ -124,6 +123,7 @@ function get_specific_data($type, $table, $condition, $value, $condition2 = null
         $get_data->execute([$value]);
     }
     $success = $get_data->rowCount();
+
 
     if($success > 0) {
 
@@ -194,7 +194,6 @@ function siteName() {
 }
 
 // posts and news 
-
 function calc_time($timestamp) {
 
     $current_time = time();
@@ -226,4 +225,31 @@ function calc_time($timestamp) {
     
 
 
+}
+
+// comments
+function get_comments($username) {
+
+    $con = get_pdo();
+
+    $userid = get_user_id($username);
+
+    $get_comments = $con->prepare(
+        "
+        SELECT * FROM comment
+        JOIN users
+        ON users.user_id = comment.user_id
+        WHERE comment.user_id = ?
+        ");
+
+    $get_comments->execute([$userid]);
+
+    if($get_comments->rowCount() > 0) {
+
+        $fetch = $get_comments->fetchAll(PDO::FETCH_ASSOC);
+
+        return $fetch;
+    }
+
+    return "<div class='alert alert-info'>لا توجد تعليقات بعد</div>";
 }

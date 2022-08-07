@@ -145,27 +145,31 @@ $(function() {
   })
   
   //get the liked posts
-  $.post("likes.php?action=liked_posts", function(data, status, xhr) {
+  $.post("likes.php?action=liked_posts", function(data, status) {
 
+    let clientUserId = $(".post-box, .profile-posts").find(".client-uid").attr("value");
     if(status == "success") {
 
-      console.log(data);
+      // console.log(clientUserId);
+
+        // console.log("success");
 
         var info = JSON.parse(data);
 
         var arr = Object.entries(info);
+
+        // console.log(arr);
     
-        // console.log(arr[0][1]["post_id"])
+        
         for(var i = 0; i < arr.length; i++) {
     
-          var currentPost_id = arr[i][1]["post_id"];
-    
-          // console.log(currentPost_id)
+          var currentPostId = arr[i][1]["post_id"];
+          var likers = arr[i][1]["likes"].split("+");
+          let liked = likers.includes(clientUserId);
           $(".post-box, .profile-posts").each(function() {
     
-            if ($(this).find(".post_id").attr("value") == currentPost_id) {
+            if ($(this).find(".post_id").attr("value") == currentPostId && liked) {
     
-              // console.log("this post have likers:" + currentPost_id)
               $(this).find(".like").find("i").css("color", "red");
               $(this).find(".like").find("i").attr("data-color",  "red");
             }
@@ -210,7 +214,6 @@ $(function() {
 
     // console.log(data.table[0])
     let show = 10;
-    console.log(location.href);
 
     if(location.href.includes("stats.php")) show = 0
 
@@ -255,15 +258,15 @@ $(function() {
 
   $(".post-box").on("click", function() {
     
-    let postId = $(this).find("input").attr("value");
+    let postId = $(this).find(".post_id").attr("value");
 
     location.href = "posts.php?post=" + postId;
   })
 
-  $(".profile-posts").on("click", function() {
+  $(".posts-container").on("click", function() {
 
-    console.log("click")
-    let postId = $(this).find("input").attr("value");
+    // console.log("click")
+    let postId = $(this).find(".post_id").attr("value");
 
     location.href = "posts.php?post=" + postId;
 
@@ -273,7 +276,18 @@ $(function() {
 
     event.stopPropagation();
 
-    console.log("clicked");
+    // console.log("clicked");
+  })
+
+  // news click
+
+  $(".news-container").on("click", function() {
+
+    // console.log("click")
+    let postId = $(this).find("input").attr("value");
+
+    location.href = "news.php?post=" + postId;
+
   })
 
   // add news-post 
@@ -391,7 +405,16 @@ $(function() {
 
   // comments
   $(".show-comment").find(".alert-danger").hide();
+  // comment click
+  $(".comments-container").on("click", function() {
 
+    // console.log("click")
+    let postId = $(this).find("input").attr("value");
+
+    location.href = "posts.php?post=" + postId;
+
+  })
+  
   // navbar
   let pageTitle = document.querySelector("title").textContent;
   let navElements = document.querySelectorAll(".navbar .main-options li");
@@ -399,7 +422,7 @@ $(function() {
   navElements.forEach(function(element, index) {
 
     if(element.getAttribute("title") == pageTitle) {
-      console.log(element.children[0].children[0]);
+      // console.log(element.children[0].children[0]);
       element.children[0].children[0].style.padding = "5px";
       element.children[0].children[0].style.backgroundColor = "#fff";
       element.children[0].children[0].style.color = "#f72585";
@@ -416,5 +439,7 @@ $(function() {
       
     }
   })
+
+  // profile
   
 });

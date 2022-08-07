@@ -27,6 +27,7 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
 			<?php foreach($posts as $post): ?>
 
 				<div class="post-box">
+					<input type="hidden" class="client-uid" value="<?php echo get_user_id($_SESSION["username"]); ?>">
 					<input type="hidden" class="post_id" value="<?php echo $post["post_id"]; ?>">
 					<div class="img-container">
 						<?php 

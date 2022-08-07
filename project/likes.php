@@ -39,7 +39,7 @@ if(isset($_SESSION["state"]) && $_SESSION["state"] === true) {
                     for($i = 0; $i < count($likers_ids); $i++) {
     
                         if($likers_ids[$i] == $client_id) {
-    
+                            
                             $did_like = 1;
                             break;
     
@@ -110,8 +110,8 @@ if(isset($_SESSION["state"]) && $_SESSION["state"] === true) {
                 $get_likes->execute();
                 if($get_likes->rowCount() > 0) {
     
-                     $posts_likers = $get_likes->fetchAll();
-                     print_r(json_encode($posts_likers));
+                     $posts_likers = $get_likes->fetchAll(PDO::FETCH_ASSOC);
+                     print_r(json_encode($posts_likers));   
                         
                 }
     

@@ -735,8 +735,9 @@ section.add .btn-send {
   display: flex;
   flex-wrap: wrap;
   width:100%;
-  background:#fff;
-  overflow:hidden;
+  min-height: 150px;background:#fff;
+  overflow:
+  hidden;
   margin-right:16px;
   padding:8px;
   border-bottom: 1px dotted darkgray;
@@ -789,6 +790,7 @@ section.add .btn-send {
 }
 .profile-posts .likes {
   flex-direction:row;
+  height: 100%;
  }
 .profile-posts .img-container {
   width:30%;
@@ -802,6 +804,18 @@ section.add .btn-send {
 .profile-posts .tab-content .tab-pane {
   background: #fff;
   margin:0 16px 0 0;
+}
+.profile-section .left-side .show-comment {
+  background-color: #fff;
+}
+.profile-section  .show-comment .comment-box {
+  padding:0;
+  border-radius: 0;
+  border-bottom: 1px dotted grey;
+  margin:0
+}
+.comments-container {
+  cursor: pointer;
 }
 /*end profile+*/
 
@@ -857,7 +871,7 @@ section.add-comment form .comment-send:hover {
   height:50pxs;
 }
 .comment-box .text-container .profile-info .avatar {
-  width:10%;
+  /* width:10%; */
   height: 100%;
   float: right;
 }
@@ -877,6 +891,7 @@ section.add-comment form .comment-send:hover {
   width:90%;
   display: flex;
   justify-content: flex-end;
+  margin-right: 10px;
 }
 
 .comment-box .username h4:first-of-type {
@@ -893,7 +908,8 @@ section.add-comment form .comment-send:hover {
   width:100%;
   margin: 25px 10px 0 0;
   padding:0 0 0 10px;
-  color:var(--textColor);
+  color:
+  var(--textColor);
 }
 .comment-box .text-container .comment-description p {
   line-height: 1.6;

@@ -3,12 +3,14 @@ session_start();
 // You need to load the Composer autoload file somewhere in your code before
 
 if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
-
+    
     $name = "الصفحة الرئيسية";
     include 'init_front.php';
 
 ?>
 <div class="container">
+
+
 <div class="box d-flex flex-column align-items-center">
 
 <section class="news">
@@ -66,6 +68,7 @@ if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
     INNER JOIN users
     ON users.user_id = posts.user_id
     WHERE category_id = 1
+    LIMIT 3
     ");
     
     $connect->execute();
@@ -79,7 +82,7 @@ if(isset($_SESSION['state']) === true && $_SESSION['state'] === true) {
         foreach($record as $result)  { ?>
         
         <div class="post-box">
-            
+        <input type="hidden" class="client-uid" value="<?php echo get_user_id($_SESSION["username"]); ?>">
         <input type="hidden" class="post_id" value="<?php echo $result["post_id"]; ?>">
         <div class="img-container">
             <?php 

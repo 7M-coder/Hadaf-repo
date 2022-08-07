@@ -33,6 +33,7 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
                     
 
                 <div class="profile-section">
+
                     <header class="header">
                         <img src="design/images/PageHeader.jpg" class="header-img img-responsive" alt="">
                     </header>
@@ -65,7 +66,7 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
 
                                 <div class="numbers flex">
                                     <span class="followers_nums">
-                                        <h3>المتابعين</h3>
+                                        <h3>المتابَعين</h3>
                                         <h4>
                                             <?php 
                                             $userid = get_user_id($username);
@@ -86,7 +87,7 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
                                         </h4>
                                     </span>
                                     <span class="following_nums">
-                                        <h3>المتابعون</h3>
+                                        <h3>المتابِعون</h3>
                                         <h4>
                                             <?php 
                                             $clinet_id = get_user_id($username);
@@ -223,7 +224,8 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
                                     <?php 
                                     foreach($result as $post) { ?>
 
-                                    <div class="profile-posts">
+                                    <div class="profile-posts posts-container">
+                                    <input type="hidden" class="client-uid" value="<?php echo get_user_id($_SESSION["username"]); ?>">
 
                                     <input type="hidden" class="post_id" value="<?php echo $post["post_id"]; ?>">
 
@@ -313,8 +315,8 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
                                     ?>
                                 <?php
                                 foreach($result as $news) { ?>
-                                <div class="profile-posts">
-
+                                <div class="profile-posts news-container">
+                                <input type="hidden" value="<?php echo $news["post_id"]; ?>">
                                 <div class="text-container">
 
                                 <div class="profile-info">
@@ -351,13 +353,142 @@ if(isset($_SESSION["state"]) && $_SESSION["state"]) {
                                 
                                 } else { 
 
-                                    echo "<div class='alert alert-light'>لا توجد منشورات بعد!</div>";
+                                    echo "<div class='alert alert-light'>لا توجد أخبار بعد!</div>";
                                 }
                                 ?>
                                 </div>
-                                <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                                <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                                
+                                <div class="tab-pane fade" id="likes" role="tabpanel" aria-labelledby="contact-tab">
+                                <?php 
+                                    $userid = get_user_id($username);
+                                    $get_liked_posts = $con->prepare("SELECT * FROM posts JOIN users ON users.user_id = posts.user_id WHERE likes LIKE '%$userid%'");
+                                    $get_liked_posts->execute(); 
+                                    $success = $get_liked_posts->rowCount();
+                                    if($success) { 
+                                        $posts = $get_liked_posts->fetchAll();
+                                        foreach($posts as $post):
+                                    ?>
+
+                                    <div class="profile-posts posts-container">
+                                    <input type="hidden" class="client-uid" value="<?php echo get_user_id($_SESSION["username"]); ?>">
+
+                                    <input type="hidden" class="post_id" value="<?php echo $post["post_id"]; ?>">
+
+                                    <div class="text-container">
+
+                                    <div class="profile-info">
+
+                                        <a class="avatar" href="profile.php?username=<?php echo $post["username"]; ?>">   
+                                            <img src="admin\uploads\avatars\<?php echo $post["avatar"]; ?>" alt="avatar">
+                                        </a>
+
+                                        <div class="username">
+                                            <h4><?php echo $post["name"]; ?></h4>
+                                            <h4><?php echo $post["username"]; ?>@</h4>
+                                            <?php 
+					                    	$post_timestamp = strtotime(date("Y/m/d H:i:s" ,strtotime($post["post_date"] . " " . $post["post_time"])));
+						 
+						                    ?>
+						                    <p class="post-date"><?php echo date("M d", strtotime($post["post_date"])); ?></p>
+						                    <p class="post-time"><?php echo calc_time($post_timestamp) ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="post-description">
+                                            <p><?php echo $post["description"]; ?></p>
+                                    </div>
+
+                                    <div class='likes'>
+                                        <button class="like" type="submit" value="<?php echo $post["post_id"]; ?>"><i class="fa-solid fa-heart" data-color='#d1d1d1'></i></button>
+                                        <button class="likers">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-heart" viewBox="0 0 16 16">
+                                            <path d="M9 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h10s1 0 1-1-1-4-6-4-6 3-6 4Zm13.5-8.09c1.387-1.425 4.855 1.07 0 4.277-4.854-3.207-1.387-5.702 0-4.276Z"/>
+                                        </svg>
+                                        </button>
+                                        <button class="comments">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                                                <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    </div>
+                                    <?php 
+                                            
+                                        if(empty($post["image"]) === false) { ?>
+                                        
+                                        <div class="img-container">
+                                            <img class="rounded" src="admin\uploads\posts\<?php echo $post['image'] ?> ">                                        
+                                        </div>
+                                        <?php }
+                                            
+                                    ?>
+
+                                    </div>
+
+                                    <?php 
+                                    endforeach; 
+
+                                    } else {
+
+                                        echo "<div class='alert alert-light'>لا توجد إعجابات بعد</div>";
+                                    }
+                                    
+                                ?>
+
+                                
+                                    
+                                </div>
+
+                                <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="contact-tab">
+                                    <?php 
+                                    
+                                    $comments = get_comments($_SESSION["username"]); 
+                                    
+                                    ?>
+                                    <section class="show-comment mt-0">
+                                    <?php if(is_array($comments)): ?>
+			                        <?php foreach($comments as $index => $comment): ?>
+                                    
+			                        <div class="comment-box comments-container">
+                                        <input type="hidden" value="<?php echo $comment["post_id"] ?>">
+                                        <div class="text-container justify-content-center">
+                                            <div class="profile-info">
+                                                <a class="avatar" href="profile.php?username=<?php echo $comment["username"]; ?>">   
+                                                    <img src="admin\uploads\avatars\<?php echo $comment["avatar"]; ?>" alt="avatar">
+                                                </a>
+
+                                                <div class="username justify-content-start" >
+                                                    <h4><?php echo $comment["name"]; ?></h4>
+                                                    <h4 id="comment_username" class="mx-2"><?php echo $comment["username"]; ?>@</h4>
+                                                    <?php 
+                                                    $comment_timestamp = strtotime(date("Y/m/d H:i:s" ,strtotime($comment["date"] . " " . $comment["time"])));
+                                                    
+                                                    ?>
+                                                    <p class="comment-time"><?php echo calc_time($comment_timestamp) ?></p>
+                                                    <p class="comment-date"><?php echo date("M d", strtotime($comment["date"])); ?></p>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="comment-description">
+                                                    <p class=""><?php echo $comment["comment"]; ?></p>
+                                            </div>
+                                    </div>
+                                </div>
+                                <?php endforeach; ?>
+                                <?php else: echo "<div class='alert alert-light'>لا توجد تعليقات بعد</div>" ?>
+                                <?php endif; ?>
+                                <!--end of show comments section-->
+		                        </section>                                        
+                                        
+                                <!--end of tab pane-->
+                                </div>
+
+                                <!--end of tab content-->
                             </div>
+
+                            <!--end of left side-->
                         </section>
 
                         <?php include "add-modal.php"; ?>
