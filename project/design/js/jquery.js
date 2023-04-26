@@ -207,48 +207,50 @@ $(function() {
 
   })
 
+  // $.ajax({
+  //   url: "https://api.football-data.org/v4/competitions/DED/standings",
+  //   headers: {'X-Auth-Token': '6e9f1eff1afb4e879cf3f415632c74f2'}
+  // }).done(function(data) {
+
+
+  //   // console.log(data.table[0])
+  //   let show = 10;
+
+  //   if(location.href.includes("stats.php")) show = 0
+
+  //   for(var i = 0; i < data.table.length - show; i++) {
+
+  //     // console.log(team.strTeamBadge + " " + team.strTeam + " " + team.intRank + " " + team.intPoints + " " + team.intWin + " " + team.intLoss + " " + team.intDraw + " " + team.intPlayed + " " + team.strForm);
+
+  //     let team = data.table[i];
+
+  //     let club = `
+  //     <tr class='team-row'>
+  //         <th class='team-rank d-none d-md-flex'> ${team.intRank} </th>
+  //         <td class='badge-box' >
+  //         <img class='team-badge mx-2 mx-md-0' src='${team.strTeamBadge}' />       
+  //         </td>
+  //         <td class='team-name'>${team.strTeam}</td>
+  //         <td class='team-points'>${team.intPoints}</td>
+  //         <td class='team-wins'>${team.intWin}</td>
+  //         <td class='team-losses'>${team.intLoss}</td>
+  //         <td class='team-draws'>${team.intDraw}</td>
+  //         <td class='team-played d-none d-md-flex'>${team.intPlayed}</td>
+  //         <td class='team-form d-none d-md-flex'>${team.strForm}</td>
+  //     </tr>
+
+  //     `
+
+  //     $(".league-standing .table-container").append(club)
+
+
+  //   }
+
+  // })
+
   $.ajax({
-    url: "https://www.thesportsdb.com/api/v1/json/2/lookuptable.php?l=4328&s=2021-2022"
-  }).done(function(data) {
-
-
-    // console.log(data.table[0])
-    let show = 10;
-
-    if(location.href.includes("stats.php")) show = 0
-
-    for(var i = 0; i < data.table.length - show; i++) {
-
-      // console.log(team.strTeamBadge + " " + team.strTeam + " " + team.intRank + " " + team.intPoints + " " + team.intWin + " " + team.intLoss + " " + team.intDraw + " " + team.intPlayed + " " + team.strForm);
-
-      let team = data.table[i];
-
-      let club = `
-      <tr class='team-row'>
-          <th class='team-rank d-none d-md-flex'> ${team.intRank} </th>
-          <td class='badge-box' >
-          <img class='team-badge mx-2 mx-md-0' src='${team.strTeamBadge}' />       
-          </td>
-          <td class='team-name'>${team.strTeam}</td>
-          <td class='team-points'>${team.intPoints}</td>
-          <td class='team-wins'>${team.intWin}</td>
-          <td class='team-losses'>${team.intLoss}</td>
-          <td class='team-draws'>${team.intDraw}</td>
-          <td class='team-played d-none d-md-flex'>${team.intPlayed}</td>
-          <td class='team-form d-none d-md-flex'>${team.strForm}</td>
-      </tr>
-
-      `
-
-      $(".league-standing .table-container").append(club)
-
-
-    }
-
-  })
-
-  $.ajax({
-    url: "https://api.statorium.com/api/v1/topplayers/20/?apikey=123_test_token_123&event_id=1&limit=100"
+    url: "https://api.football-data.org/v4/competitions/DED/standings",
+    headers: {'X-Auth-Token': '6e9f1eff1afb4e879cf3f415632c74f2'}
   }).done(function(data) {
 
     console.log(data)
