@@ -1,26 +1,26 @@
-HADAF - Premier League Fans Social Media Platform
+# HADAF - Premier League Fans Social Media Platform
 
-Project Overview
+## Project Overview
 Hadaf is a dedicated platform for fans of the English Premier League to connect, share updates, and engage with each other.
 
-Features:
+### Features:
 
-    User Profiles: Every user has their own profile page.
+User Profiles: Every user has their own profile page.
 
-    CRUD Operations: Users can perform Create, Read, Update, and Delete operations on posts and comments.
+CRUD Operations: Users can perform Create, Read, Update, and Delete operations on posts and comments.
 
-    Follow/Unfollow: Users have the ability to follow and unfollow other users to stay updated with their activities.
+Follow/Unfollow: Users have the ability to follow and unfollow other users to stay updated with their activities.
 
-    Post Interaction: Posts support comments and likes.
+Post Interaction: Posts support comments and likes.
 
-    Posts vs. News: The platform has two types of content: one for user-generated posts and another for news updates, ensuring a distinction between user-driven content and official news.
+Posts and News: The platform has two types of content: one for user-generated posts and another for news updates, ensuring a distinction between user-driven content and official news.
 
-    Login & Signup System: Implements a secure login and signup system to authenticate users and manage access to the platform.
+Login and Signup System: Implements a secure login and signup system to authenticate users and manage access to the platform.
 
-    Admin Panel: Admins have access to a control panel to manage users and moderate spam comments.
+Admin Panel: Admins have access to a control panel to manage users and moderate spam comments.
 
-Tech Stack
+### Tech Stack
 
-    Backend: Built using PHP to handle server-side operations and database management.
+Backend: Built using PHP to handle server-side operations and database management.
 
-    Frontend: Implemented with jQuery, HTML, and CSS to create an interactive and user-friendly interface.
+Frontend: Implemented with jQuery, HTML, and CSS to create an interactive and user-friendly interface.
